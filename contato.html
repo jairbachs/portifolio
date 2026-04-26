@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Jair Bach</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #161616;
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo .name {
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+	    display: block
+        }
+
+        .logo .sub {
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: #888;
+	    display: block
+        }
+
+        /* MENU */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: white;
+        }
+
+        nav {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #1a1a1a;
+            transition: 0.5s;
+            padding: 120px 40px;
+            z-index: 1000;
+        }
+
+        nav.active { left: 0; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #b59469;
+        }
+
+        /* CONTEÚDO */
+        .contact-section {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-box {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: #b59469;
+            letter-spacing: 4px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .main-title span {
+            color: #b59469;
+            font-weight: 300;
+        }
+
+        .contact-text {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* BOTÕES */
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 25px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 2px solid #b59469;
+            color: #b59469;
+        }
+
+        .btn:hover {
+            background-color: #b59469;
+            color: #fff;
+        }
+
+        .btn.primary {
+            background-color: #b59469;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            opacity: 0.9;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .contact-text {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-container">
+        <div class="logo">
+            <span class="name">JAIR BACH</span>
+            <span class="sub">JORNALISTA</span>
+        </div>
+
+        <div class="menu-toggle" id="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-drawer">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="sobre.html">SOBRE</a></li>
+                <li><a href="portifolio.html">PORTFÓLIO</a></li>
+                <li><a href="contato.html" class="active">CONTATO</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="contact-section">
+    <div class="container contact-box">
+
+        <span class="section-subtitle">CONTATO</span>
+        <h1 class="main-title">VAMOS <span>CONVERSAR</span></h1>
+
+        <p class="contact-text">
+            Estou disponível para pautas, projetos, reportagens especiais e colaborações.
+            Entre em contato por um dos canais abaixo.
+        </p>
+
+        <div class="contact-actions">
+
+            <!-- WHATSAPP -->
+            <a href="https://wa.me/5549999420098" target="_blank" class="btn primary">
+                FALAR PELO WHATSAPP
+            </a>
+
+            <!-- EMAIL -->
+            <a href="mailto:jair_bach@hotmail.com" class="btn">
+                ENVIAR E-MAIL
+            </a>
+
+            <!-- INSTAGRAM -->
+            <a href="https://instagram.com/jairbachs" target="_blank" class="btn">
+                INSTAGRAM
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+
+    menuBtn.addEventListener('click', () => {
+        navDrawer.classList.toggle('active');
+        menuBtn.classList.toggle('open');
+    });
+</script>
+
+</body>
+</html>

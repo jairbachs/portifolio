@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jair Bach | Jornalista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. RESET E ESTRUTURA SINGLE SCREEN --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Trava rolagem no Desktop */
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- 2. HEADER --- */
+        header {
+            background-color: #161616;
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 10; /* Atrás da foto no Desktop */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo .name {
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .logo .sub {
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: #888;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li { margin-left: 30px; }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active { color: #b59469; }
+
+        .menu-toggle { display: none; } /* Escondido no Desktop */
+
+        /* --- 3. HERO SECTION (DESKTOP) --- */
+        .hero {
+            height: calc(100vh - 80px);
+            position: relative;
+            /* Dica de Ouro: Radial Gradient (Luz de estúdio) */
+            background: radial-gradient(circle at 75% 50%, #ffffff 2%, #f2f2f2 45%, #dcdcdc 100%);
+            display: flex;
+        }
+
+        .hero-layout {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-image-wrapper {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            z-index: 20; /* Foto à frente do Header */
+        }
+
+        .main-photo {
+            height: 120%; /* Faz a foto "vazar" para cima */
+            width: 700px;
+            object-fit: contain;
+            margin-top: -80px; /* Sobrepõe a cabeça no menu preto */
+            filter: drop-shadow(15px 10px 10px rgba(0,0,0,0.1));
+        }
+
+        .hero-content {
+            flex: 2;
+            padding-bottom: 15px;
+            padding-left: 0px;
+            z-index: 100;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .main-title span { color: #b59469; font-weight: 300; }
+
+        .tagline { font-weight: 700; font-size: 1rem; margin-bottom: 15px; }
+
+        .description { font-size: 1.05rem; color: #444; line-height: 1.5; max-width: 480px; margin-bottom: 40px; }
+
+        /* BOTÕES E DRT */
+        .cta-buttons { display: flex; gap: 15px; margin-bottom: 40px; }
+
+        .btn {
+            padding: 18px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: 0.3s ease;
+        }
+
+        .btn-gold { background-color: #b59469; color: white; }
+        .btn-outline { border: 1px solid #1a1a1a; color: #1a1a1a; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        .drt {
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 15px;
+            display: inline-flex;
+        }
+
+        /* --- 4. VERSÃO MOBILE --- */
+        @media (max-width: 768px) {
+            /* Menu Hambúrguer */
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                z-index: 100;
+                cursor: pointer;
+            }
+            .menu-toggle span { width: 25px; height: 2px; background-color: white; transition: 0.3s; }
+
+            /* Menu Lateral */
+            nav {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                width: 80%;
+                height: 100%;
+                background-color: #1a1a1a;
+                transition: 0.5s;
+                padding: 120px 40px;
+            }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; align-items: flex-start; }
+            nav ul li { margin: 15px 0; }
+            nav ul li a { font-size: 1.3rem; }
+
+            /* Foto vira o fundo total */
+            .hero-image-wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+            .main-photo {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+                margin-top: -100px; /* Cabeça sobrepõe levemente o menu */
+            }
+
+            /* DEGRADÊ DUPLO (Legibilidade topo e base) */
+            .overlay-mobile {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, 
+                    rgba(0,0,0,0.7) 0%, 
+                    transparent 20%, 
+                    transparent 60%, 
+                    rgba(0,0,0,0.9) 100%);
+            }
+
+            /* Texto sobre as mãos */
+            .hero-layout { justify-content: center; align-items: center; text-align: center; }
+            
+            .hero-content {
+                padding: 0 0px;
+                color: white;
+                margin-top: 50vh; /* Posiciona na altura das mãos */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-title { font-size: 2rem; color: white; margin-bottom: 5px; }
+            .tagline { font-size: 0.5rem; color: #ddd; max-width: 200px; }
+            .description { display: none; } /* Oculto para não poluir */
+
+            .cta-buttons { flex-direction: row; gap: 10px; }
+            .btn { padding: 10px 18px; font-size: 0.6rem; }
+            .btn-outline { border-color: white; color: white; }
+
+            .drt { color: #aaa; border-top-color: rgba(255,255,255,0.2); }
+
+            /* X do Menu */
+            .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .menu-toggle.open span:nth-child(2) { opacity: 0; }
+            .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        }
+
+        /* --- 5. PÁGINA SOBRE --- */
+        .about-section {
+            height: calc(100vh - 80px);
+            background: #fdfdfd;
+            overflow: hidden;
+        }
+
+        .about-layout {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: #b59469;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .bio-scroll {
+            max-height: 40vh;
+            overflow-y: auto;
+            padding-right: 20px;
+            margin-bottom: 30px;
+        }
+
+        .bio-scroll p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .bio-scroll::-webkit-scrollbar { width: 4px; }
+        .bio-scroll::-webkit-scrollbar-thumb { background: #b59469; }
+
+        .about-visual {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            background-color: #000;
+        }
+
+        .photo-sobre {
+            height: 95%;
+            width: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .side-nav-right {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .side-menu-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(181, 148, 105, 0.9);
+            padding: 20px 10px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .side-menu-inner a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 800;
+            transition: 0.3s;
+            writing-mode: vertical-rl;
+            text-transform: uppercase;
+            padding: 5px 0;
+        }
+
+        .side-menu-inner a:hover { color: #1a1a1a; }
+
+        @media (max-width: 768px) {
+            .about-layout { flex-direction: column; padding-top: 40px; }
+            .about-visual { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+            .about-text { position: relative; z-index: 10; color: white; padding-top: 60vh; }
+            .about-text .main-title, .about-text .section-subtitle { color: white; }
+            .bio-scroll p { color: #eee; font-size: 0.9rem; }
+            .side-nav-right { right: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="logo">
+                <span class="name">JAIR BACH</span>
+                <span class="sub">JORNALISTA</span>
+            </div>
+
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="sobre.html">SOBRE</a></li>
+                    <li><a href="portifolio.html">PORTFÓLIO</a></li>
+                    <li><a href="contato.html">CONTATO</a></li>
+                    <li class="linkedin-icon">
+                        <a href="https://www.linkedin.com/in/jair-bach-01005a10b/">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image-wrapper">
+            <img src="sua-foto.png" alt="Jair Bach" class="main-photo">
+            <div class="overlay-mobile"></div>
+        </div>
+
+        <div class="container hero-layout">
+            <div class="hero-content">
+                <h1 class="main-title">JAIR <span>BACH</span></h1>
+                
+                <div class="text-group">
+                    <p class="tagline">CONTAR A VIDA REAL É O QUE ME MOVE</p>
+                    <p class="description">
+                        Experiência em TV, rádio, jornal impresso e portal, com atuação em hard news e reportagens especiais.
+                    </p>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="portifolio.html" class="btn btn-gold">PORTFÓLIO</a>
+                    <a href="contato.html" class="btn btn-outline">CONTATO</a>
+                </div>
+                
+                <div class="drt">
+                    <span>DRT 0007218/SC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

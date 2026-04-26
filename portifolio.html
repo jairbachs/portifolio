@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio | Jair Bach</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+}
+
+/* HEADER */
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1001;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO */
+.logo .name {
+    display:block;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.logo .sub {
+    display:block;
+    font-size:.65rem;
+    letter-spacing:5px;
+    color:#aaa;
+}
+
+/* MENU */
+.menu-toggle {
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    z-index:1100;
+}
+
+.menu-toggle span {
+    width:25px;
+    height:2px;
+    background:#fff;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: #1a1a1a;
+    transition: .4s;
+    padding: 120px 40px;
+    z-index: 1000;
+}
+
+nav.active { left: 0; }
+
+nav ul {
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+nav a {
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+}
+
+nav a:hover,
+nav a.active {
+    color:#b59469;
+}
+
+/* HERO */
+.hero {
+    height: 85vh;
+    background: url("DSC07350.png") center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 0;
+    position: relative;
+}
+
+.hero::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(to top, #0f0f0f 20%, transparent 80%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: clamp(2rem,4vw,3.5rem);
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color:#ddd;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.btn {
+    display:inline-block;
+    padding:12px 25px;
+    background:#b59469;
+    color:#fff;
+    font-weight:700;
+    text-decoration:none;
+}
+
+/* ROWS */
+.row {
+    margin-top: 40px;
+}
+
+.row-title {
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+/* SCROLL */
+.row-content {
+    display:flex;
+    gap:15px;
+    overflow-x:auto;
+    padding-bottom:10px;
+}
+
+.row-content::-webkit-scrollbar {
+    height:5px;
+}
+
+.row-content::-webkit-scrollbar-thumb {
+    background:#b59469;
+}
+
+/* CARD */
+.card {
+    min-width:250px;
+    height:150px;
+    background:#222;
+    position:relative;
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.card img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.card:hover img {
+    transform:scale(1.1);
+}
+
+.card-overlay {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.8), transparent);
+    display:flex;
+    align-items:flex-end;
+    padding:15px;
+}
+
+.card-title {
+    font-size:.9rem;
+}
+
+/* MODAL VIDEO */
+.video-modal {
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    z-index:5000;
+    justify-content:center;
+    align-items:center;
+}
+
+.video-modal.active {
+    display:flex;
+}
+
+.video-content {
+    position:relative;
+    width:90%;
+    max-width:900px;
+}
+
+.video-content iframe {
+    width:100%;
+    height:500px;
+}
+
+.close {
+    position:absolute;
+    top:-30px;
+    right:0;
+    font-size:30px;
+    cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .hero { height:70vh; }
+    .video-content iframe { height:250px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav-container">
+    
+    <div class="logo">
+        <span class="name">JAIR BACH</span>
+        <span class="sub">JORNALISTA</span>
+    </div>
+
+    <div class="menu-toggle" id="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav id="nav-drawer">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="sobre.html">SOBRE</a></li>
+            <li><a href="portifolio.html" class="active">PORTFÓLIO</a></li>
+            <li><a href="contato.html">CONTATO</a></li>
+        </ul>
+    </nav>
+
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container hero-content">
+    <h1>TRIGO LIMPO</h1>
+    <p>Os bastidores da judicialização eleitoral e as falhas no sistema de transparência do TRE.</p>
+
+    <!-- 🔥 AGORA ABRE O SITE -->
+    <a href="https://jairbachs.github.io/trigolimpo/" target="_blank" class="btn">
+        LER / ASSISTIR
+    </a>
+
+</div>
+</section>
+
+<!-- LINHAS -->
+<div class="container">
+
+    <div class="row">
+        <div class="row-title">CONTEÚDOS EM VIDEO</div>
+        <div class="row-content">
+
+            <!-- CARD VÍDEO -->
+            <div class="card video-card" data-video="Jg8awhOj8t8">
+                <img src="https://img.youtube.com/vi/Jg8awhOj8t8/hqdefault.jpg">
+                <div class="card-overlay">
+                    <div class="card-title">Boletim sobre Visita do Presidente do TJSC</div>
+                </div>
+            </div>
+	    <a href="https://globoplay.globo.com/conexao-inverno/t/jwQCnJNdSs/temporadas/2/" target="_blank" class="card">
+
+    <img src="capa-globoplay.jpg">
+
+    <div class="card-overlay">
+        <div class=>Produção Conexão Inverno NSC 2024</div>
+    </div>
+
+</a>
+            <div class="card video-card" data-video="esJ1pAj5um8">
+                <img src="https://img.youtube.com/vi/esJ1pAj5um8/hqdefault.jpg">
+                <div class="card-overlay">
+                    <div class="card-title">Boletim para a TV a Sua Voz
+</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/400/300?2">
+                <div class="card-overlay">
+                    <div class="card-title">Investigação urbana</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="video-modal" class="video-modal">
+    <div class="video-content">
+        <span class="close">&times;</span>
+        <iframe id="video-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+const btn = document.getElementById('menu-btn');
+const nav = document.getElementById('nav-drawer');
+
+btn.addEventListener('click', () => {
+    nav.classList.toggle('active');
+});
+
+/* VIDEO */
+const modal = document.getElementById('video-modal');
+const iframe = document.getElementById('video-frame');
+const closeBtn = document.querySelector('.close');
+
+document.querySelectorAll('.video-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const videoId = card.getAttribute('data-video');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.classList.add('active');
+    });
+});
+
+closeBtn.onclick = () => {
+    modal.classList.remove('active');
+    iframe.src = "";
+};
+
+modal.onclick = (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+        iframe.src = "";
+    }
+};
+</script>
+
+</body>
+</html>
