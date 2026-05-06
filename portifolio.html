@@ -9,7 +9,6 @@
 
 <style>
 
-/* RESET */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -18,7 +17,6 @@ body {
     color: #fff;
 }
 
-/* HEADER */
 header {
     height: 80px;
     display: flex;
@@ -42,7 +40,6 @@ header {
     align-items: center;
 }
 
-/* LOGO */
 .logo .name {
     display:block;
     font-weight:700;
@@ -56,7 +53,6 @@ header {
     color:#aaa;
 }
 
-/* MENU */
 .menu-toggle {
     display:flex;
     flex-direction:column;
@@ -71,7 +67,6 @@ header {
     background:#fff;
 }
 
-/* NAV */
 nav {
     position: fixed;
     left: -100%;
@@ -104,7 +99,6 @@ nav a.active {
     color:#b59469;
 }
 
-/* HERO */
 .hero {
     height: 85vh;
     background: url("DSC07350.png") center/cover no-repeat;
@@ -147,7 +141,6 @@ nav a.active {
     text-decoration:none;
 }
 
-/* ROWS */
 .row {
     margin-top: 40px;
 }
@@ -157,7 +150,6 @@ nav a.active {
     margin-bottom:15px;
 }
 
-/* SCROLL */
 .row-content {
     display:flex;
     gap:15px;
@@ -173,7 +165,6 @@ nav a.active {
     background:#b59469;
 }
 
-/* CARD */
 .card {
     min-width:250px;
     height:150px;
@@ -181,6 +172,8 @@ nav a.active {
     position:relative;
     cursor:pointer;
     overflow:hidden;
+    text-decoration:none;
+    color:#fff;
 }
 
 .card img {
@@ -207,7 +200,6 @@ nav a.active {
     font-size:.9rem;
 }
 
-/* MODAL VIDEO */
 .video-modal {
     display:none;
     position:fixed;
@@ -231,17 +223,38 @@ nav a.active {
 .video-content iframe {
     width:100%;
     height:500px;
+    border:0;
 }
 
-.close {
+.close,
+.close-group {
     position:absolute;
     top:-30px;
     right:0;
     font-size:30px;
     cursor:pointer;
+    line-height:1;
+    user-select:none;
 }
 
-/* MOBILE */
+#group-modal .video-content {
+    background:#111;
+    padding:30px;
+    max-width:700px;
+}
+
+#group-links p a {
+    color:#fff;
+    text-decoration:none;
+}
+
+/* Estilo para o asterisco */
+.asterisk-note {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 5px;
+}
+
 @media(max-width:768px){
     .hero { height:70vh; }
     .video-content iframe { height:250px; }
@@ -254,7 +267,7 @@ nav a.active {
 
 <header>
 <div class="container nav-container">
-    
+
     <div class="logo">
         <span class="name">JAIR BACH</span>
         <span class="sub">JORNALISTA</span>
@@ -278,13 +291,11 @@ nav a.active {
 </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
 <div class="container hero-content">
     <h1>TRIGO LIMPO</h1>
     <p>Os bastidores da judicialização eleitoral e as falhas no sistema de transparência do TRE.</p>
 
-    <!-- 🔥 AGORA ABRE O SITE -->
     <a href="https://jairbachs.github.io/trigolimpo/" target="_blank" class="btn">
         LER / ASSISTIR
     </a>
@@ -292,54 +303,70 @@ nav a.active {
 </div>
 </section>
 
-<!-- LINHAS -->
 <div class="container">
 
     <div class="row">
-        <div class="row-title">CONTEÚDOS EM VIDEO</div>
+        <div class="row-title">CONTEÚDOS EM VÍDEO</div>
         <div class="row-content">
 
-            <!-- CARD VÍDEO -->
-            <div class="card video-card" data-video="Jg8awhOj8t8">
-                <img src="https://img.youtube.com/vi/Jg8awhOj8t8/hqdefault.jpg">
-                <div class="card-overlay">
-                    <div class="card-title">Boletim sobre Visita do Presidente do TJSC</div>
-                </div>
-            </div>
-	    <a href="https://globoplay.globo.com/conexao-inverno/t/jwQCnJNdSs/temporadas/2/" target="_blank" class="card">
-
-    <img src="capa-globoplay.jpg">
-
-    <div class="card-overlay">
-        <div class=>Produção Conexão Inverno NSC 2024</div>
-    </div>
-
-</a>
-            <div class="card video-card" data-video="esJ1pAj5um8">
-                <img src="https://img.youtube.com/vi/esJ1pAj5um8/hqdefault.jpg">
-                <div class="card-overlay">
-                    <div class="card-title">Boletim para a TV a Sua Voz
-</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://picsum.photos/400/300?2">
-                <div class="card-overlay">
-                    <div class="card-title">Investigação urbana</div>
-                </div>
-            </div>
+            <div class="card video-card" data-video="UKIMFMcCpO8"><img src="https://img.youtube.com/vi/UKIMFMcCpO8/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Entrevista pós Juri</div></div></div>
+            <div class="card video-card" data-video="Jg8awhOj8t8"><img src="https://img.youtube.com/vi/Jg8awhOj8t8/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Presença de Pres. Desembargador em Pinhalzinho</div></div></div>
+            <a href="https://globoplay.globo.com/conexao-inverno/t/jwQCnJNdSs/temporadas/2/" target="_blank" class="card"><img src="capa-globoplay.jpg"><div class="card-overlay"><div class="card-title">Produção Conexão Inverno NSC</div></div></a>
+            <div class="card video-card" data-video="esJ1pAj5um8"><img src="https://img.youtube.com/vi/esJ1pAj5um8/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Treinamento de mergulhadores</div></div></div>
+            <div class="card video-card" data-video="iFjMLZnw1-8"><img src="https://img.youtube.com/vi/iFjMLZnw1-8/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Vá de ônibus para Efacip 2023</div></div></div>
+            <div class="card video-card" data-video="NKGBeJbIk7w"><img src="https://img.youtube.com/vi/NKGBeJbIk7w/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Programa lar legal</div></div></div>
+            <div class="card video-card" data-video="JKWqAK5MbrM"><img src="https://img.youtube.com/vi/JKWqAK5MbrM/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Furto de gado</div></div></div>
+            <div class="card video-card" data-video="mWqTkbcLu_Q"><img src="https://img.youtube.com/vi/mWqTkbcLu_Q/hqdefault.jpg"><div class="card-overlay"><div class="card-title">Tratoraço</div></div></div>
 
         </div>
     </div>
 
+    <div class="row">
+        <div class="row-title">JORNAL IMPRESSO</div>
+        <div class="row-content">
+	    <a href="https://www.facebook.com/share/p/17HZHrPRzp/" target="_blank" class="card"><img src=desdobramentos.jpg><div class="card-overlay"><div class="card-title">Ampliação da discussão pós suícidio</div></div></a>
+            <a href="https://www.behance.net/gallery/169018747/Reportagem-para-jornal-impresso" target="_blank" class="card"><img src="Apostas.png"><div class="card-overlay"><div class="card-title">Apostas esportivas - Profissão x vício</div></div></a>
+            <a href="https://www.behance.net/gallery/169011209/Reportagem-para-jornal-impresso" target="_blank" class="card"><img src="Saúde.png"><div class="card-overlay"><div class="card-title">Nutricionista explica como a saúde está ligada a boa alimentação</div></div></a>
+            <a href="https://www.behance.net/gallery/169018491/Reportagem-para-jornal-impresso" target="_blank" class="card"><img src="mentira.png"><div class="card-overlay"><div class="card-title">Mentir é uma necessidade para você?</div></div></a>
+            <a href="https://www.behance.net/gallery/169009599/Reportagem-e-Fotografia-para-Jornal-impresso" target="_blank" class="card"><img src="down.png"><div class="card-overlay"><div class="card-title">Dia Internacional da Síndrome de Down</div></div></a>
+            <a href="https://www.behance.net/gallery/169011417/Reportagem-para-Jornal-Impresso" target="_blank" class="card"><img src="esporte.png"><div class="card-overlay"><div class="card-title">SESI realiza acampamento para integração de pais e filhos</div></div></a>
+        </div>
+        <div class="asterisk-note">* Conteúdos produzidos para o site, em grande parte, foram perdidos com a atualização do mesmo</div>
+    </div>
+
+    <div class="row">
+        <div class="row-title">COBERTURA HARD NEWS</div>
+        <div class="row-content">
+
+            <a href="https://www.facebook.com/share/p/1AAtorRwuZ/" target="_blank" class="card"><img src=acidente.jpg><div class="card-overlay"><div class="card-title">Acidente com óbito</div></div></a>
+            <a href="https://www.facebook.com/share/p/1EWQGhcHUP/" target="_blank" class="card"><img src=simples.jpg><div class="card-overlay"><div class="card-title">acidente simples</div></div></a>
+            <a href="https://www.facebook.com/share/v/1CftsGMR1k/" target="_blank" class="card"><img src=jardinopolis.png><div class="card-overlay"><div class="card-title">Cobertura da Chuva em Jardinópolis</div></div></a>
+            <a href="https://www.facebook.com/share/v/1arsjjV4Tk/" target="_blank" class="card"><img src=saudades.png><div class="card-overlay"><div class="card-title">Cobertura das chuvas em Saudades</div></div></a>
+            <a href="https://www.facebook.com/share/v/18ocx9zXoY/" target="_blank" class="card"><img src=incêndio.png><div class="card-overlay"><div class="card-title">Incêndio em Pinhalzinho</div></div></a>
+            <a href="https://www.facebook.com/share/p/1DkHzujX4C/" target="_blank" class="card"><img src=agressão.jpg><div class="card-overlay"><div class="card-title">Agressão contra idoso</div></div></a>
+            <a href="https://www.facebook.com/share/v/17Y717sjoo/" target="_blank" class="card"><img src=homicidio.png><div class="card-overlay"><div class="card-title">Homicidio em Pinhalzinho</div></div></a>
+            <a href="https://www.facebook.com/share/p/18kVzoDo2w/" target="_blank" class="card"><img src=queda.jpg><div class="card-overlay"><div class="card-title">Queda de caminhão da ponte</div></div></a>
+
+
+            <div class="card" onclick="openGroup('especial')"><img src=preso.jpg><div class="card-overlay"><div class="card-title">Incêndio residêncial com desdobramentos</div></div></div>
+            <div class="card" onclick="openGroup('juri')"><img src=juri.jpg><div class="card-overlay"><div class="card-title">Cobertura Juri Popular do caso de Saudades</div></div></div>
+
+        </div>
+        <div class="asterisk-note">* Conteúdos produzidos para o site, em grande parte, foram perdidos com a atualização do mesmo</div>
+    </div>
 </div>
 
-<!-- MODAL -->
 <div id="video-modal" class="video-modal">
     <div class="video-content">
-        <span class="close">&times;</span>
-        <iframe id="video-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <span class="close" id="video-close">&times;</span>
+        <iframe id="video-frame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<div id="group-modal" class="video-modal">
+    <div class="video-content">
+        <span class="close-group" onclick="closeGroup()">&times;</span>
+        <div id="group-links"></div>
     </div>
 </div>
 
@@ -351,10 +378,14 @@ btn.addEventListener('click', () => {
     nav.classList.toggle('active');
 });
 
-/* VIDEO */
 const modal = document.getElementById('video-modal');
 const iframe = document.getElementById('video-frame');
-const closeBtn = document.querySelector('.close');
+const closeBtn = document.getElementById('video-close');
+
+function closeVideo() {
+    modal.classList.remove('active');
+    iframe.src = "";
+}
 
 document.querySelectorAll('.video-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -364,17 +395,43 @@ document.querySelectorAll('.video-card').forEach(card => {
     });
 });
 
-closeBtn.onclick = () => {
-    modal.classList.remove('active');
-    iframe.src = "";
+closeBtn.addEventListener('click', closeVideo);
+
+const groups = {
+    especial: [
+        'https://www.facebook.com/share/v/1GNFRvsTYU/',
+        'https://www.facebook.com/share/p/1VdnTudKP5/'
+    ],
+    juri: [
+        'https://www.facebook.com/share/v/14ac7BZ9We5/',
+        'https://www.facebook.com/share/p/1KotUUaQWP/',
+        'https://www.facebook.com/share/p/1BkZ3cxydY/',
+        'https://www.facebook.com/share/p/14a8e7MYqxk/'
+    ]
 };
 
-modal.onclick = (e) => {
+function openGroup(type){
+    const modal = document.getElementById('group-modal');
+    const links = document.getElementById('group-links');
+    links.innerHTML = groups[type].map((url,i)=>`<p style="margin:15px 0"><a href="${url}" target="_blank" style="color:#fff;text-decoration:none">Abrir conteúdo ${i+1}</a></p>`).join('');
+    modal.classList.add('active');
+}
+
+function closeGroup(){
+    document.getElementById('group-modal').classList.remove('active');
+}
+
+modal.addEventListener('click', (e) => {
     if (e.target === modal) {
-        modal.classList.remove('active');
-        iframe.src = "";
+        closeVideo();
     }
-};
+});
+
+document.getElementById('group-modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('group-modal')) {
+        closeGroup();
+    }
+});
 </script>
 
 </body>
